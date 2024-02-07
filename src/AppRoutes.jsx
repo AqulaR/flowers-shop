@@ -1,4 +1,11 @@
 import { useRoutes } from "react-router-dom";
+import Home from "./home";
+import Catalog from "./catalog";
+import Login from "./login";
+import Registration from "./registration";
+import Bucket from "./bucket";
+import Lk from "./lk";
+import Card from "./card";
 
 const NotFound = () => {
 	return (
@@ -12,16 +19,32 @@ const NotFound = () => {
 export default function AppRoutes() {
 	let routes = useRoutes([
 		{
-			path: "/",
-			element: <>главная</>,
+			path: "/home",
+			element: <Home/>,
 		},
 		{
-			path: "register",
-			element: <>register</>,
+			path: "/catalog",
+			element: <Catalog/>,
 		},
 		{
-			path: "login",
-			element: <>login</>,
+			path: "/login",
+			element: <Login/>,
+		},
+		{
+			path: "/registration",
+			element: <Registration/>,
+		},
+		{
+			path: "/bucket",
+			element: <Bucket/>,
+		},
+		{
+			path: "/lk",
+			element: <Lk/>,
+		},
+		{
+			path: "/card",
+			element: <Card/>,
 		},
 		{ path: "*", element: <NotFound /> },
 	]);

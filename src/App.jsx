@@ -8,12 +8,10 @@ function App() {
 	const [count, setCount] = useState(0);
 
 	return (
-		<>
 			<Router>
 				{/* сюда будете вставлять  всякие контексты и настройки*/}
 				<AppRoutes />
 			</Router>
-		</>
 	);
 }
 
