@@ -42,6 +42,18 @@ export default function MainPage() {
         console.log(error, "error");
       });
   };
+
+  const removeFlower = (id) => {
+    axios
+      .delete(`https://6dwz27-3000.csb.app/server/flowers/${id}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <h1>Главная</h1>
@@ -59,6 +71,7 @@ export default function MainPage() {
         {cart.map((item, index) => (
           <>
             <p key={index}>{item.name}</p>
+            <button onClick={() => removeFlower(item.id)}>Удалить</button>
           </>
         ))}
       </div>

@@ -2,31 +2,45 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const cors = require("cors");
-const { Sequelize, DataTypes } = require("sequelize");
+// const { Sequelize, DataTypes } = require("sequelize");
+
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+// установка схемы
+const userScheme = new Schema({
+  name: String,
+  age: Number,
+});
+// определяем модель User
+const User = mongoose.model("User", userScheme);
+// создаем объект модели User
+const user = new User({ name: "Bill", age: 41 });
+
+async function main() {
+  // подключемся к базе данных
+  await mongoose.connect("mongodb+srv://test:test@cluster0.gtwri.mongodb.net/");
+
+  // сохраняем модель user в базу данных
+  await user.save();
+  console.log("Сохранен объект", user);
+
+  // отключаемся от базы данных
+  await mongoose.disconnect();
+}
+// запускаем подключение и взаимодействие с базой данных
+main().catch(console.log);
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
 
-// const sequelize = new Sequelize("sqlite::memory:");
-// const User = sequelize.define("User", {
-//   username: DataTypes.STRING,
-//   birthday: DataTypes.DATE,
-// });
-
-// const jane = await User.create({
-//   username: "janedoe",
-//   birthday: new Date(1980, 6, 20),
-// });
-
-// const users = await User.findAll();
-
 app.get("/flowers/", (req, res) => {
   const content = fs.readFileSync("flowers.json", "utf8");
   const flowers = JSON.parse(content);
   if (!flowers || flowers.length <= 0) {
-    res.status(404).json({ message: "Дел нет" });
+    res.status(404).json({ message: "Пусто" });
   } else {
     res.json(flowers);
   }
@@ -41,7 +55,7 @@ app.get("/flower/:id", (req, res) => {
   if (flower) {
     res.json(flower);
   } else {
-    res.status(404).json({ message: "Дело не найдено" });
+    res.status(404).json({ message: "Не найдено 404" });
   }
 });
 
@@ -73,7 +87,7 @@ app.delete("/server/flowers/:id", (req, res) => {
     fs.writeFileSync("flowers.json", JSON.stringify(flowers));
     res.json(flower);
   } else {
-    res.status(404).json({ message: "Дело не найдено" });
+    res.status(404).json({ message: "Не найдено 404" });
   }
 });
 
@@ -91,7 +105,7 @@ app.put("/server/flower", (req, res) => {
     fs.writeFileSync("flowers.json", JSON.stringify(flowers));
     res.json(flower);
   } else {
-    res.status(404).json({ message: "Дело не найдено" });
+    res.status(404).json({ message: "Не найдено 404" });
   }
 });
 
@@ -101,7 +115,7 @@ app.get("/cart", (req, res) => {
   const content = fs.readFileSync("cart.json", "utf8");
   const all_cart_items = JSON.parse(content);
   if (!all_cart_items || all_cart_items.length <= 0) {
-    res.status(404).json({ message: "Дел нет" });
+    res.status(404).json({ message: "Пусто" });
   } else {
     res.json(all_cart_items);
   }
