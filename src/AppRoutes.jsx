@@ -23,7 +23,7 @@ export default function AppRoutes() {
       element: <Home />,
     },
     {
-      path: "/catalog",
+      path: "catalog",
       element: <Catalog />,
     },
     {
