@@ -138,7 +138,7 @@ export default function Modal({ setOpenModal }) {
                           type="submit"
                           className="flex w-full justify-center rounded-md bg-lime-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm"
                         >
-                          Зарегистироваться
+                          Зарегистироватьсяя
                         </button>
                       </div>
                       <div className="vhod text-center">Войти</div>
