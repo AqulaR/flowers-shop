@@ -16,12 +16,12 @@ export default function Home() {
             </div>
             <div className="down_menu">
               <nav className="nav_bar_continer">
-                <ul>
+                <ul className="left_nav">
                   <li>
                     <a href="#">Главная</a>
                   </li>
                   <li>
-                    <a href="#">Каталог</a>
+                    <a href="src\catalog.jsx">Каталог</a>
                   </li>
                   <li>
                     <a href="#">Отызвы</a>
@@ -30,16 +30,25 @@ export default function Home() {
                     <a href="#">О нас</a>
                   </li>
                 </ul>
-                <ul>
-                  <li>
-                    <input type="text" />
+                <ul className="riht_nav">
+                  <li className="input">
+                    <input type="text" name="search" placeholder="Поиск.." />
+                    <i className="fa-solid fa-magnifying-glass color-344A32"></i>
                   </li>
                   <li>
-                    <a href="">
-                      <img src="" alt="" />
+                    <a href="#">
+                      <img
+                        className="Menu_buttom"
+                        src="src\img\lk.png"
+                        alt="профиль"
+                      />
                     </a>
-                    <a href="">
-                      <img src="" alt="" />
+                    <a href="#">
+                      <img
+                        className="Menu_buttom"
+                        src="src\img\cart.png"
+                        alt="треш"
+                      />
                     </a>
                   </li>
                 </ul>
@@ -48,6 +57,21 @@ export default function Home() {
           </div>
         </div>
       </header>
+      <main>
+        <div className="offer">
+          <div className="bg_offer">
+            <div className="offer_text">
+              <h1>FloralFinds</h1>
+              <p>ваш идеальный выбор букетов и цветов для любого повода</p>
+              <ul>
+                <li>
+                  <a href="#">В каталог</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
     </>
   );
 }
