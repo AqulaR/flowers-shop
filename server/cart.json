@@ -1,11 +1,1 @@
-[
-  { "id": 1, "name": "first" },
-  { "name": "el3", "id": 2 },
-  { "name": "el3", "id": 3 },
-  { "name": "el4", "id": 4 },
-  { "name": "el3", "id": 5 },
-  { "name": "el3", "id": 6 },
-  { "name": "el3", "id": 7 },
-  { "name": "el4", "id": 8 },
-  { "name": "el4", "id": 9 }
-]
+[{"name":"Ашапатыч","quantity":"4","price":"228","id":1}]

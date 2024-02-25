@@ -1,5 +1,8 @@
 import { useRoutes } from "react-router-dom";
 import MainPage from "./MainPage";
+import Catalog from "./Catalog";
+import AddItem from "./AddItem";
+import Cart from "./Cart";
 
 const NotFound = () => {
   return (
@@ -17,8 +20,20 @@ export default function AppRoutes() {
       element: <MainPage />,
     },
     {
+      path: "catalog",
+      element: <Catalog />,
+    },
+    {
       path: "register",
       element: <>register</>,
+    },
+    {
+      path: "add",
+      element: <AddItem />,
+    },
+    {
+      path: "cart",
+      element: <Cart />,
     },
     {
       path: "login",

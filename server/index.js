@@ -40,7 +40,7 @@ app.post("/server/flowers", (req, res) => {
     price: req.body.price,
     img: req.body.img,
     desc: req.body.desc,
-    quantity: req.body.desc,
+    quantity: req.body.quantity,
   };
 
   const data = fs.readFileSync("flowers.json", "utf8");
@@ -110,6 +110,7 @@ app.post("/server/cart", (req, res) => {
     el_id: req.body.el_id,
     name: req.body.name,
     quantity: req.body.quantity,
+    price: req.body.price,
   };
 
   const data = fs.readFileSync("cart.json", "utf8");
