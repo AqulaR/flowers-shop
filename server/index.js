@@ -2,34 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const cors = require("cors");
-// const { Sequelize, DataTypes } = require("sequelize");
-
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-
-// установка схемы
-const userScheme = new Schema({
-  name: String,
-  age: Number,
-});
-// определяем модель User
-const User = mongoose.model("User", userScheme);
-// создаем объект модели User
-const user = new User({ name: "Bill", age: 41 });
-
-async function main() {
-  // подключемся к базе данных
-  await mongoose.connect("mongodb+srv://test:test@cluster0.gtwri.mongodb.net/");
-
-  // сохраняем модель user в базу данных
-  await user.save();
-  console.log("Сохранен объект", user);
-
-  // отключаемся от базы данных
-  await mongoose.disconnect();
-}
-// запускаем подключение и взаимодействие с базой данных
-main().catch(console.log);
+const { all } = require("axios");
 
 const app = express();
 app.use(bodyParser.json());
@@ -62,8 +35,13 @@ app.get("/flower/:id", (req, res) => {
 app.post("/server/flowers", (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Данные не переданы" });
 
-  const flowerName = req.body.name;
-  const flower = { name: flowerName };
+  const flower = {
+    name: req.body.name,
+    price: req.body.price,
+    img: req.body.img,
+    desc: req.body.desc,
+    quantity: req.body.desc,
+  };
 
   const data = fs.readFileSync("flowers.json", "utf8");
   const flowers = JSON.parse(data);
@@ -94,14 +72,17 @@ app.delete("/server/flowers/:id", (req, res) => {
 app.put("/server/flower", (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Данные не переданы" });
 
-  const { id, name, isDone } = req.body;
+  const { id, name, price, img, desc, quantity } = req.body;
   const data = fs.readFileSync("flowers.json", "utf8");
   const flowers = JSON.parse(data);
   const flower = flowers.find((t) => t.id == id);
 
   if (flower) {
     flower.name = name;
-    flower.isDone = isDone;
+    flower.price = price;
+    flower.img = img;
+    flower.desc = desc;
+    flower.quantity = quantity;
     fs.writeFileSync("flowers.json", JSON.stringify(flowers));
     res.json(flower);
   } else {
@@ -124,8 +105,12 @@ app.get("/cart", (req, res) => {
 app.post("/server/cart", (req, res) => {
   if (!req.body) return res.status(400).json({ message: "Данные не переданы" });
 
-  const cart_el_name = req.body.name;
-  const cart = { name: cart_el_name };
+  // const cart_el_name = req.body.name;
+  const cart = {
+    el_id: req.body.el_id,
+    name: req.body.name,
+    quantity: req.body.quantity,
+  };
 
   const data = fs.readFileSync("cart.json", "utf8");
   const all_cart_items = JSON.parse(data);
@@ -139,6 +124,42 @@ app.post("/server/cart", (req, res) => {
 
   fs.writeFileSync("cart.json", JSON.stringify(all_cart_items));
   res.json(cart);
+});
+
+app.delete("/server/cart/:id", (req, res) => {
+  const id = req.params.id;
+  const data = fs.readFileSync("cart.json", "utf8");
+  const cart = JSON.parse(data);
+
+  const index = cart.findIndex((t) => t.id == id);
+  if (index > -1) {
+    const [flower] = cart.splice(index, 1);
+    fs.writeFileSync("cart.json", JSON.stringify(cart));
+    res.json(flower);
+  } else {
+    res.status(404).json({ message: "Не найдено 404" });
+  }
+});
+
+app.put("/server/cart", (req, res) => {
+  if (!req.body) return res.status(400).json({ message: "Данные не переданы" });
+
+  const { id, name, price, img, desc, quantity } = req.body;
+  const data = fs.readFileSync("cart.json", "utf8");
+  const all_cart = JSON.parse(data);
+  const cart_item = all_cart.find((t) => t.id == id);
+
+  if (cart_item) {
+    cart_item.name = name;
+    cart_item.price = price;
+    cart_item.img = img;
+    cart_item.desc = desc;
+    cart_item.quantity = quantity;
+    fs.writeFileSync("cart.json", JSON.stringify(all_cart));
+    res.json(cart_item);
+  } else {
+    res.status(404).json({ message: "Не найдено 404" });
+  }
 });
 
 app.listen(3000, () => {
