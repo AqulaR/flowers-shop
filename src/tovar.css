@@ -1,0 +1,83 @@
+.content_tovar {
+  display: flex;
+}
+
+.photo_tovara {
+  width: 550px;
+  margin-top: 40px;
+  margin-left: 110px;
+}
+
+.content_tovar_right {
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.info_tovar {
+  width: 1083px;
+  height: 360px;
+  border: 1px solid #344a32;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 25px;
+}
+
+.name_tovar {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.price_tovar {
+  margin-bottom: 20px;
+  color: #828282;
+  font-size: 20px;
+}
+
+.description_tovar {
+  font-size: 20px;
+}
+
+.buttons_tovar {
+  margin-top: 50px;
+  display: flex;
+}
+
+.button_tovar_card {
+  width: 652px;
+  height: 92px;
+  background-color: #344a32;
+  color: #ffffff;
+  font-size: 32px;
+  border: none;
+}
+
+.button_tovar_card:hover {
+  border: 2px solid #344a32;
+  background-color: #ffffff;
+  color: #344a32;
+}
+
+.favourites {
+  margin-left: 60px;
+}
+
+.care_tovar {
+  width: 1650px;
+  margin-top: 40px;
+  margin-left: 110px;
+  border: 1px solid #344a32;
+  padding-top: 30px;
+  padding-left: 40px;
+  padding-right: 25px;
+}
+
+.text_care_tovar {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+
+.info_care_tovar {
+  width: 1600px;
+  margin-bottom: 35px;
+  font-size: 20px;
+}

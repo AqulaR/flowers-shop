@@ -1,3 +1,105 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+.about {
+  display: flex;
+  margin: 168px 253px;
+  gap: 4rem;
+}
+
+.line_about {
+  width: 41px;
+  height: 2px;
+  background-color: #000000;
+  margin-top: 8px;
+}
+
+.about_right h3 {
+  font-size: 36px;
+  font-weight: medium;
+  color: #000000;
+  font-family: "Inter", sans-serif !important;
+}
+
+.text_about p {
+  width: 448px;
+  text-align: justify;
+  margin-top: 45px;
+  font-size: 18px;
+  font-family: "Inter", sans-serif !important;
+}
+
+.text_about1 {
+  width: 311px;
+  height: 2px;
+  background-color: #000000;
+  margin: 29px 0;
+}
+
+/* footer */
+
+footer {
+  background-color: #92988b;
+  width: 100%;
+  height: 392px;
+}
+
+.wrapper_footer {
+  display: flex;
+  margin: 0 451px;
+}
+
+.foooter_a li {
+  margin-bottom: 15px;
+}
+
+.foooter_a a {
+  color: #1c2e1a;
+  font-size: 18px;
+}
+
+.footer_p {
+  font-size: 18px;
+  font-family: "Inter", sans-serif !important;
+  font-weight: 700;
+  color: #1c2e1a;
+  margin: 63px 0 30px 0;
+}
+
+.footer_contact {
+  margin-left: 270px;
+}
+.contact_flex a {
+  display: flex;
+  color: #1c2e1a;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.contact_flex a p {
+  margin-left: 7px;
+}
+
+.visa {
+  margin-top: 61px;
+  margin-left: 124px;
+}
+
+.footer_contact p {
+  font-size: 18px;
+  font-family: "Inter", sans-serif !important;
+  color: #1c2e1a;
+}
+
+.footer_contact h5 {
+  font-size: 15px;
+  font-family: "Inter", sans-serif !important;
+  color: #5e6358;
+  font-weight: 400;
+  margin-top: 3rem;
+}
